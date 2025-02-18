@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.data.domain.Sort;
 
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
@@ -106,7 +107,9 @@ public class AdminController {
     }
     @GetMapping("/displayCourses")
     public ModelAndView displayCourses(Model model) {
-        List<Courses> courses = coursesRepository.findAll();
+        // List<Courses> courses = coursesRepository.findByOrderByNameDesc();
+        List<Courses> courses = coursesRepository.findAll(Sort.by("name").ascending());
+
         ModelAndView modelAndView = new ModelAndView("courses_secure.html");
         modelAndView.addObject("courses",courses);
         modelAndView.addObject("course", new Courses());
