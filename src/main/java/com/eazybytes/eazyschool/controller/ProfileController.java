@@ -1,4 +1,3 @@
-
 package com.eazybytes.eazyschool.controller;
 
 import com.eazybytes.eazyschool.model.Address;
@@ -19,14 +18,14 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Slf4j
-@Controller
+@Controller("profileControllerBean")
 public class ProfileController {
 
     @Autowired
     PersonRepository personRepository;
 
     @RequestMapping("/displayProfile")
-    public ModelAndView displayMessages(Model model,HttpSession session) {
+    public ModelAndView displayMessages(Model model, HttpSession session) {
         Person person = (Person) session.getAttribute("loggedInPerson");
         Profile profile = new Profile();
         profile.setName(person.getName());
@@ -39,16 +38,14 @@ public class ProfileController {
             profile.setState(person.getAddress().getState());
             profile.setZipCode(person.getAddress().getZipCode());
         }
-           
-
-            ModelAndView modelAndView = new ModelAndView("profile.html");
-            modelAndView.addObject("profile",profile);
-            return modelAndView;
-        }
+        ModelAndView modelAndView = new ModelAndView("profile.html");
+        modelAndView.addObject("profile",profile);
+        return modelAndView;
+    }
 
     @PostMapping(value = "/updateProfile")
     public String updateProfile(@Valid @ModelAttribute("profile") Profile profile, Errors errors,
-                                HttpSession session)
+            HttpSession session)
     {
         if(errors.hasErrors()){
             return "profile.html";
