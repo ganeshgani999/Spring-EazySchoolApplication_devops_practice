@@ -14,5 +14,7 @@ public class EazyschoolApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EazyschoolApplication.class, args);
+				//This is main page to run application
+
 	}
 }
