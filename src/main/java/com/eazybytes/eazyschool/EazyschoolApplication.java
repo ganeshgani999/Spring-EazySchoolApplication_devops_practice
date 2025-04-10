@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.eazybytes.eazyschool.model")
 @EnableJpaAuditing(auditorAwareRef="auditAwareImpl")
 public class EazyschoolApplication {
-
+//Run and Debug
 	public static void main(String[] args) {
 		SpringApplication.run(EazyschoolApplication.class, args);
 				//This is main page to run application
